@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import Sidebar from "./Sidebar"; // Import Sidebar
 import MainContent from "./MainContent"; // Import MainContent
 import { Outlet } from "react-router-dom"; // Import Outlet
 import Header from "./Header"; // Import Header
+import { getBoards } from "../../services/apiService";
 
-const Dashboard = () => {
+export const Dashboard = () => {
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       {/* Header at the top */}
@@ -21,5 +22,3 @@ const Dashboard = () => {
     </Box>
   );
 };
-
-export default Dashboard;
