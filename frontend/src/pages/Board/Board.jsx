@@ -74,22 +74,7 @@ export const Board = () => {
     }
   }, [boardData, columnOrder]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("boardData");
-    localStorage.removeItem("columnOrder");
-    setBoardData({
-      todos: [],
-      doing: [],
-      done: [],
-    });
-    setColumnOrder([]);
-    toast({
-      title: "Logged out successfully",
-      status: "info",
-      duration: 2000,
-      isClosable: true,
-    });
-  };
+
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
@@ -180,7 +165,7 @@ export const Board = () => {
 
   return (
     <Container maxW="1400px" marginInline={0} bg="#232b2b" minHeight="100vh">
-      <BoardHeader onLogout={handleLogout} />
+      <BoardHeader />
       <Box as="main">
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable

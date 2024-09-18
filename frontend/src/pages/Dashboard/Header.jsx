@@ -10,12 +10,16 @@ import {
   MenuItem,
   Input,
   Avatar,
+  useToast,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import Trello from "../../assets/trello.svg";
+import { useMutative } from "use-mutative";
+
 
 const Header = () => {
+  const toast = useToast();
   const [activeDropdown, setActiveDropdown] = useState(""); // Track the active dropdown
   const [workplaceName, setWorkplaceName] = useState("");
 
@@ -33,11 +37,31 @@ const Header = () => {
   };
 
   const navigate = useNavigate();
+  const [columnOrder, setColumnOrder] = useState([]);
+  const [boardData, setBoardData] = useMutative({
+    todos: [],
+    doing: [],
+    done: [],
+  });
 
   const handleLogout = () => {
     // Add your logout logic here, e.g., clearing tokens, etc.
     // Then navigate to the home page
     localStorage.removeItem("authToken");
+    // localStorage.removeItem("boardData");
+    // localStorage.removeItem("columnOrder");
+    // setBoardData({
+    //   todos: [],
+    //   doing: [],
+    //   done: [],
+    // });
+    setColumnOrder([]);
+    toast({
+      title: "Logged out successfully",
+      status: "info",
+      duration: 2000,
+      isClosable: true,
+    });
     navigate("/");
   };
 

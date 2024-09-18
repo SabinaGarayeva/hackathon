@@ -37,6 +37,7 @@ export const Boards = () => {
     }
   };
 
+
   const addBoard = async () => {
     if (!newBoardName) {
       toast({
@@ -44,7 +45,20 @@ export const Boards = () => {
       });
     }
     const res = await createBoard(newBoardName);
+    if (res.status == 201) {
+      initBoards();
+      onClose();
+    }
   };
+
+  // const addBoard = async () => {
+  //   if (!newBoardName) {
+  //     toast({
+  //       title: "no name",
+  //     });
+  //   }
+  //   const res = await createBoard(newBoardName);
+  // };
 
   useEffect(() => {
     initBoards();
